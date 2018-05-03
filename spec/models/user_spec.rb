@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
     end
 
     it "can have many projects" do
-        user = User.create(first_name: 'First', last_name: 'last')
+        user = User.create!(email: 't@t.t', password: 'test123')
         user.projects << Project.create!(name: 'test 1')
         user.projects << Project.create!(name: 'test 2')
         expect(user.projects.length).to eq(2)

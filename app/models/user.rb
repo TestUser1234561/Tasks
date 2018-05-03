@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     #User has many projects
     has_and_belongs_to_many :projects
+    has_and_belongs_to_many :tasks
 
     # Include default devise modules. Others available are:
     devise :database_authenticatable, :registerable,
