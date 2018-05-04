@@ -14,16 +14,19 @@ class ProjectController < ApplicationController
     def new
         @user = current_user
         @project = Project.new
+        @errors = @project.errors
     end
 
     def create
         @user = current_user
         @project = Project.assign_and_create(project_params, @user)
+        @errors = @project.errors.full_messages
 
         if @project.valid?
             @project.save
             redirect_to( project_path(@project) )
         else
+            @errors = [*@project.errors.full_messages]
             render :new
         end
     end
