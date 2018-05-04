@@ -5,6 +5,6 @@ class HomeController < ApplicationController
         @user = current_user
         @projects = @user.projects
 
-        render layout:  'main'
+        render layout: 'main'
     end
 end

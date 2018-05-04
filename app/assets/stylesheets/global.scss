@@ -1,0 +1,304 @@
+$font-stack: 1em "Open Sans", Ubuntu, Sans-Serif;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  min-height: 500px;
+  padding: 0;
+  margin: 0;
+  font: $font-stack;
+  background-color: #F6F7F7;
+}
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+$page-margin: 10px;
+
+/////////
+// Nav //
+/////////
+#nav {
+  width: 100%;
+  height: 30px;
+  padding: 10px 0;
+  background-color: #026aa7;
+  color: #F6F7F7;
+}
+
+#title {
+  display: inline-block;
+  height: 100%;
+  line-height: 30px !important;
+  margin-left: $page-margin;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  color: #F6F7F7;
+  transition: color .1s ease-in;
+}
+
+#title:hover {
+  color: #fff;
+}
+
+#button-dashboard {
+  height: 100%;
+  float: right;
+  clear: both;
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: center;
+  align-items: center;
+  grid-column-gap: 10px;
+  margin-right: $page-margin;
+}
+
+#user-data {
+  padding: 15px;
+  position: absolute;
+  right: $page-margin;
+  margin-top: $page-margin;
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 10px;
+  background-color: #fff;
+}
+
+#name {
+  font: $font-stack;
+  font-size: 0.65em;
+  color: gray;
+}
+
+/////////////
+// Content //
+/////////////
+#content {
+  width: calc(100% - #{$page-margin} * 2);
+  height: calc(100% - 50px - #{$page-margin} * 2); //50px = nav bar height + padding
+  margin: $page-margin;
+}
+
+////////////////////
+// Global classes //
+////////////////////
+//Displays
+.hidden {
+  display: none !important;
+}
+
+//Grids
+.grid-center {
+  width: auto;
+  height: auto;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+//Fills
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+.fill-x {
+  width: 100%;
+}
+
+.fill-y {
+  height: 100%;
+}
+
+//Error boxes
+.error_display {
+  width: calc(100% - 20px);
+  display: grid;
+  justify-items: left;
+  align-items: center;
+  background-color: #dc5f47;
+  font-size: 0.65em;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px
+}
+
+.error_display > h2 {
+  margin: 0;
+}
+
+.error_display > ul {
+  font-size: 0.86rem;
+}
+
+//Forms
+.form-container > h2 {
+  font-size: 1.5em;
+  margin-bottom: 35px;
+}
+
+.form {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 25px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  font: $font-stack;
+}
+
+.form > .field {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto;
+  grid-column-gap: 5px;
+  justify-items: start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form > .field > .field_with_errors:last-child {
+  width: 100%;
+  justify-self: end;
+}
+
+.form > .field > .field_with_errors input {
+  border: 1px solid #dc5f47;
+}
+
+.form > .field input[type=email], input[type=password], input[type=text] {
+  justify-self: end;
+  height: 35px;
+  width: 100%;
+  border: 0;
+  background-color: #F6F7F7;
+  border-radius: 5px;
+}
+
+.form > .actions {
+  width: 100%;
+}
+
+.form > .actions > input[type=submit] {
+  height: 45px;
+  width: 100%;
+  border: 0;
+  background-color: lightgray;
+  font-size: 0.75em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color .1s ease-in;
+}
+
+.form > .actions > input[type=submit]:hover {
+  background-color: #b7b7b7;
+}
+
+//Titles
+.title {
+  font-weight: bold;
+  font-size: 1.25em;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+
+/////////////
+// Buttons //
+/////////////
+//Div button
+.button {
+  height: 20px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #02b3ff;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .1s ease-in;
+}
+
+.button:hover {
+  background-color: #029ee1;
+}
+
+.button > span {
+  line-height: 10px !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+//Link style button
+.button-alt {
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  background-color: lightgray;
+  text-align: center;
+  line-height: 30px !important;
+  text-decoration: none;
+  user-select: none;
+  color: #333333;
+  transition: background-color .1s ease-in;
+}
+
+.button-alt:hover {
+  background-color: #b7b7b7;
+}
+
+/////////////
+// Destroy //
+/////////////
+.destroy-confirmation {
+  margin-top: 45px;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.destroy-buttons {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.destroy-buttons > a:first-child {
+  font-size: 0.75em;
+  background-color: #f43a34;
+  color: white;
+  width: 95%;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color .1s ease-in;
+}
+
+.destroy-buttons > a:first-child:hover {
+  background-color: #972624;
+}
+
+.destroy-buttons > a:last-child {
+  font-size: 0.75em;
+  background-color: lightgray;
+  color: white;
+  width: 95%;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color .1s ease-in;
+}
+
+.destroy-buttons > a:last-child:hover {
+  background-color: #b7b7b7;
+}

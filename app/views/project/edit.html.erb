@@ -1,0 +1,18 @@
+<div class="grid-center fill-x">
+    <div class="grid-center form-container">
+        <h2>New Project</h2>
+        <%= form_for @project, url: project_path(@project), :html => {:class => 'form'} do |f| %>
+
+            <%= render partial: 'layouts/error' %>
+
+            <div class="field">
+                <%= f.label :name %>
+                <%= f.text_field :name, autofocus: true %>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "Update" %>
+            </div>
+        <% end %>
+    </div>
+</div>

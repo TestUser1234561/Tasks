@@ -1,0 +1,14 @@
+<% if @project.errors.any? %>
+    <div class="error_display">
+        <h2>
+            <%= pluralize(@project.errors.count, "error") %>
+            prohibited this project from being created:
+        </h2>
+
+        <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
