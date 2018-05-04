@@ -1,5 +1,5 @@
 <% content_for :button do %>
-    <div class="button" data-link="<%= new_project_path %>">
+    <div class="button" data-link="<%= new_project_task_path(@project) %>">
         <i class="fas fa-plus"></i>
     </div>
     <div class="button" data-link="<%= new_project_path %>">
@@ -14,10 +14,25 @@
 <% end %>
 
 <% if @project.tasks.length != 0  %>
-    <div style="display: grid; grid-auto-flow: column">
-
+    <div style="display: flex; grid-auto-flow: column; width: auto;">
+        <% @project.tags.each do |tag| %>
+            <div class="tag-container">
+                <span class="title"><%= tag.name %></span>
+                <div class="task-container">
+                    <% @project.tasks.each do |task| %>
+                        <% if task.tag.id === tag.id %>
+                            <a class="task" href="<%= project_task_path(@project, task) %>">
+                                <%= task.title %>
+                            </a>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
     </div>
+
 <% else %>
+
     <div class="grid-center fill">
         <div style="text-align: center; color: gray">
             <span>Looks like there's nothing here yet.</span><br>

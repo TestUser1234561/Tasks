@@ -1,1 +1,46 @@
+.tag-container {
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 30px;
+  margin-top: 15px;
+  justify-items: center;
+  align-items: start;
+}
 
+.tag-container:not(:first-child) {
+  margin-left: 55px;
+}
+
+.task-container {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  max-width: 300px;
+}
+
+.task {
+  display: inline-block;
+  padding: 10px;
+  text-align: left;
+  background-color: lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  color: black;
+  transition: background-color .1s ease-in;
+}
+
+.task:not(:first-child) {
+  margin-top: 10px;
+}
+
+.task:hover {
+  background-color: #b7b7b7;
+}
