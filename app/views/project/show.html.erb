@@ -1,3 +1,7 @@
+<% content_for :breadcrumbs do %>
+<span>:</span><a href="<%= project_path(@project) %>"><%= @project.name %></a>
+<% end %>
+
 <% content_for :button do %>
     <div class="button" data-link="<%= new_project_task_path(@project) %>">
         <i class="fas fa-plus"></i>

@@ -1,6 +1,10 @@
+<% content_for :breadcrumbs do %>
+<span>:</span><a href="<%= project_path(@project) %>"><%= @project.name %></a>
+<% end %>
+
 <div class="grid-center fill-x">
     <div class="grid-center form-container">
-        <h2>New Project</h2>
+        <h2>Edit Project</h2>
         <%= form_for @project, url: project_path(@project), :html => {:class => 'form'} do |f| %>
 
             <%= render partial: 'layouts/error' %>

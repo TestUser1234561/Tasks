@@ -43,6 +43,16 @@ $page-margin: 10px;
   cursor: pointer;
 }
 
+#title > span {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.5em;
+  margin: 0 6px;
+  font-weight: bold;
+  line-height: 10px !important;
+  color: #F6F7F7;
+}
+
 #title > a:hover {
   color: #fff;
 }
