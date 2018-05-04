@@ -30,17 +30,20 @@ $page-margin: 10px;
 #title {
   display: inline-block;
   height: 100%;
-  line-height: 30px !important;
   margin-left: $page-margin;
-  font-size: 1.5em;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-  color: #F6F7F7;
   transition: color .1s ease-in;
 }
 
-#title:hover {
+#title > a {
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 30px !important;
+  color: #F6F7F7;
+  cursor: pointer;
+}
+
+#title > a:hover {
   color: #fff;
 }
 

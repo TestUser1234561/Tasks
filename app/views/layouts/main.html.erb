@@ -11,7 +11,7 @@
 
     <body>
         <div id="nav">
-            <a href="/dashboard" id="title">Tasks</a>
+            <span id="title"><a href="/dashboard">Tasks</a><%= yield(:bread_crumbs) %></span>
             <div id="button-dashboard">
                 <%= yield(:button) %>
                 <div class="button" id="user-panel">
