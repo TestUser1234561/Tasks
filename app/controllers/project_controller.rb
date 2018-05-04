@@ -9,6 +9,7 @@ class ProjectController < ApplicationController
     end
 
     def edit
+        @errors = @project.errors
     end
 
     def new
@@ -38,6 +39,7 @@ class ProjectController < ApplicationController
             @project.save
             redirect_to( project_path(@project) )
         else
+            @errors = @project.errors.full_messages
             render :update
         end
     end
