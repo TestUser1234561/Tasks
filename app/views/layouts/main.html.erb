@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasks</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.11/js/all.js" integrity="sha384-ImVoB8Er8knetgQakxuBS4G3RSkyD8IZVVQCAnmRJrDwqJFYUE4YOv+DbIofcO9C" crossorigin="anonymous"></script>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+    <body>
+        <div id="nav">
+            <span id="title">Tasks</span>
+            <div id="button-dashboard">
+                <%= yield(:new) %>
+                <div class="button" id="user-panel">
+                    <span><%= @user.first_name %></span>
+                </div>
+            </div>
+        </div>
+        <div id="user-data" class="hidden">
+            <span id="name"><%= full_user_id @user %></span>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'button-alt') %>
+        </div>
+        <div id="content">
+            <%= yield %>
+        </div>
+    </body>
+</html>
