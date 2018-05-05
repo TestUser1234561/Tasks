@@ -8,6 +8,7 @@ class User < ApplicationRecord
            :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2]
 
     def full_name
+        return self.email if self.first_name.nil? && self.last_name.nil?
         "#{self.first_name} #{self.last_name}"
     end
 

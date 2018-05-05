@@ -15,7 +15,7 @@
             <div id="button-dashboard">
                 <%= yield(:button) %>
                 <div class="button" id="user-panel">
-                    <span><%= @user.first_name %></span>
+                    <span><%= first_name_check @user %></span>
                 </div>
             </div>
         </div>
