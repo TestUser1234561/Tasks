@@ -25,7 +25,7 @@
                 </div>
             <% end %>
             <div id="login-buttons-extra">
-                <%= link_to "Sign in", new_session_path(resource_name) %>
+                <%= link_to "Sign in", root_path(resource_name) %>
                 <%= link_to "Sign in with Google", omniauth_authorize_path(resource_name, resource_class.omniauth_providers[0]) %>
             </div>
         </div>

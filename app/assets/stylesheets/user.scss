@@ -83,7 +83,9 @@
 #login-buttons-extra {
   width: 100%;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-auto-flow: column;
+  margin-top: 15px;
+  grid-column-gap: 5px;
   align-items: initial;
   justify-items: initial;
 }
@@ -92,11 +94,12 @@
   font: 0.75em "Open Sans", Ubuntu, Sans-Serif;
   background-color: #34f473;
   color: white;
-  width: 95%;
+  width: 100%;
   padding: 10px 0;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  transition: background-color .1s ease-in;
 }
 
 #login-buttons-extra a:hover{
