@@ -29,8 +29,25 @@ class ProjectController < ApplicationController
         validate :edit
     end
 
+    def add_user
+        @errors = []
+    end
+
+    def add
+        user = User.find_by(email: add_params[:email])
+        unless user.nil?
+            @project.users << user
+            @project.save
+            redirect_to( project_path(@project) )
+        else
+            @errors = ["User not found!"]
+            render :add_user
+        end
+    end
+
     def destroy
         #TODO: implement users deleting project will remove user until no users remain
+        # noinspection RubyArgCount
         @project.destroy
         redirect_to(home_path)
     end
@@ -52,5 +69,9 @@ class ProjectController < ApplicationController
 
     def project_params
         params.require(:project).permit(:name)
+    end
+
+    def add_params
+        params.require(:add).permit(:email)
     end
 end

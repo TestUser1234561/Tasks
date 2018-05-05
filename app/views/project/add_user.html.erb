@@ -1,0 +1,17 @@
+<%= render partial: 'breadcrumbs' %>
+
+<div class="grid-center fill-x">
+    <div class="grid-center form-container">
+        <h2>Add User</h2>
+        <%= form_for :add, url: add_user_path(@project), :html => {:class => 'form'} do |f| %>
+            <div class="field">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true %>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "Invite" %>
+            </div>
+        <% end %>
+    </div>
+</div>

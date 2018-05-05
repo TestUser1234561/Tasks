@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
     #Projects
     get 'project/:project_id/delete', to: 'project#confirm_destroy', as: 'delete_project'
+    get 'project/:project_id/add', to: 'project#add_user', as: 'add_user'
+    post 'project/:project_id/add', to: 'project#add'
     resources :project, except: [:index,], controller: :project do
 
         #tasks
