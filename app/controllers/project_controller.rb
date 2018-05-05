@@ -21,27 +21,12 @@ class ProjectController < ApplicationController
     def create
         @user = current_user
         @project = Project.assign_and_create(project_params, @user)
-        @errors = @project.errors.full_messages
-
-        if @project.valid?
-            @project.save
-            redirect_to( project_path(@project) )
-        else
-            @errors = [*@project.errors.full_messages]
-            render :new
-        end
+        validate :new
     end
 
     def update
         @project.update(project_params)
-
-        if @project.valid?
-            @project.save
-            redirect_to( project_path(@project) )
-        else
-            @errors = @project.errors.full_messages
-            render :update
-        end
+        validate :edit
     end
 
     def destroy
@@ -55,6 +40,16 @@ class ProjectController < ApplicationController
     end
 
     private
+    def validate(error)
+        if @project.valid?
+            @project.save
+            redirect_to( project_path(@project) )
+        else
+            @errors = @project.errors.full_messages
+            render error
+        end
+    end
+
     def project_params
         params.require(:project).permit(:name)
     end
