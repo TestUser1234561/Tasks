@@ -3,14 +3,26 @@
         <i class="fas fa-plus"></i>
     </div>
 <% end %>
+<% if @projects.length != 0  %>
 
-<div class="grid-center fill-x">
-    <div class="grid-center">
-        <span class="title">Projects</span>
-        <div id="projects-container">
-            <% @projects.each do |p| %>
-                <a href="project/<%= p.id %>" class="project-button"><%= p.name %></a>
-            <% end %>
+    <div class="grid-center fill-x">
+        <div class="grid-center">
+            <span class="title">Projects</span>
+            <div id="projects-container">
+                <% @projects.each do |p| %>
+                    <a href="project/<%= p.id %>" class="project-button"><%= p.name %></a>
+                <% end %>
+            </div>
         </div>
     </div>
-</div>
+
+<% else %>
+
+    <div class="grid-center fill">
+        <div style="text-align: center; color: gray">
+            <span>Looks like there's nothing here yet.</span><br>
+            <span>Try adding a project above!</span>
+        </div>
+    </div>
+
+<% end %>

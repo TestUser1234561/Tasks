@@ -16,6 +16,7 @@
 <% end %>
 
 <% if @project.tasks.length != 0  %>
+
     <div style="display: flex; grid-auto-flow: column; width: auto;">
         <% @project.tags.each do |tag| %>
             <div class="tag-container">
@@ -41,4 +42,5 @@
             <span>Try adding a task above!</span>
         </div>
     </div>
+
 <% end %>
