@@ -6,12 +6,26 @@
 <% if @projects.length != 0  %>
 
     <div class="grid-center fill-x">
-        <div class="grid-center">
-            <span class="title">Projects</span>
-            <div id="projects-container">
-                <% @projects.each do |p| %>
-                    <a href="project/<%= p.id %>" class="project-button"><%= p.name %></a>
-                <% end %>
+        <div style="display: flex; grid-auto-flow: column;">
+            <div class="tag-container">
+                <span class="title">Projects</span>
+                <div class="task-container">
+                    <% @projects.each do |p| %>
+                        <a href="project/<%= p.id %>" class="task"><%= p.name %></a>
+                    <% end %>
+                </div>
+            </div>
+            <div class="tag-container">
+                <span class="title">Recent Tasks</span>
+                <div id="recent-tasks" class="task-container">
+                    <% task = @user.get_latest_tasks(10) %>
+                    <% task.each do |t| %>
+                        <a href="<%= project_task_path(t.project, t) %>" class="task"><%= "#{t.project.name} - #{t.title}" %></a>
+                    <% end %>
+                    <% unless task.length > 0 %>
+                        <span style="text-align: center; color: gray">Looks like no tasks have been assigned to you yet!</span>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>

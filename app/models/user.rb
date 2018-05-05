@@ -16,6 +16,13 @@ class User < ApplicationRecord
         "#{self.first_name} #{self.last_name} <#{self.email}>"
     end
 
+    def get_latest_tasks(length)
+       tasks = self.tasks.order("created_at DESC").collect do |t|
+           t if self.project_ids.include? t.project_id
+       end
+        tasks.compact.first(length)
+    end
+
     def self.from_omniauth(auth)
         where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
             user.email = auth.info.email
