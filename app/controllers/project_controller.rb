@@ -46,10 +46,10 @@ class ProjectController < ApplicationController
     end
 
     def destroy
-        #TODO: implement users deleting project will remove user until no users remain
         # noinspection RubyArgCount
-        @project.destroy
-        redirect_to(home_path)
+        @project.users.destroy(@user)
+        @project.destroy if @project.users.empty?
+        redirect_to(dashboard_path)
     end
 
     def confirm_destroy
