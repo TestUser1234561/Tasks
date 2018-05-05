@@ -1,0 +1,3 @@
+<% content_for :breadcrumbs do %>
+<span>:</span><a href="<%= project_path(@project) %>"><%= @project.name %></a><span>:</span><a href="<%= project_task_path(@project, @task) %>"><%= @task.title %></a>
+<% end %>
