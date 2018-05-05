@@ -184,10 +184,10 @@ $page-margin: 10px;
   border: 1px solid #dc5f47;
 }
 
-.form > .field input[type=email], input[type=password], input[type=text] {
+.form > .field input[type=email], input[type=password], input[type=text], textarea, select{
   justify-self: end;
   height: 35px;
-  width: 100%;
+  width: 300px;
   border: 0;
   background-color: #F6F7F7;
   border-radius: 5px;

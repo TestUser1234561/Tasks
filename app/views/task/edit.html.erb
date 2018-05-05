@@ -20,8 +20,8 @@
             </div>
 
             <div class="field">
-                <%= f.label :Users %>
-                <%= f.select :users, @project.users.collect { |u| [ "#{u.first_name} #{u.last_name}", u.id ] }, { :multiple => true } %>
+                <%= f.label :User %>
+                <%= f.select :users, @project.users.collect { |u| [ u.full_name, u.id ] }, { :multiple => true } %>
             </div>
 
             <div class="field">
