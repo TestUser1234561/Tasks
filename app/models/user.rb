@@ -16,7 +16,7 @@ class User < ApplicationRecord
         "#{self.first_name} #{self.last_name} <#{self.email}>"
     end
 
-    def get_latest_tasks(length)
+    def latest_tasks(length)
        tasks = self.tasks.order("created_at DESC").collect do |t|
            t if self.project_ids.include? t.project_id
        end

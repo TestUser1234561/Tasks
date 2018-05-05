@@ -18,7 +18,7 @@
             <div class="tag-container">
                 <span class="title">Recent Tasks</span>
                 <div id="recent-tasks" class="task-container">
-                    <% task = @user.get_latest_tasks(10) %>
+                    <% task = @user.latest_tasks(10) %>
                     <% task.each do |t| %>
                         <a href="<%= project_task_path(t.project, t) %>" class="task"><%= "#{t.project.name} - #{t.title}" %></a>
                     <% end %>
