@@ -20,7 +20,7 @@
             </div>
         </div>
         <div id="user-data" class="hidden">
-            <span id="name"><%= full_user_id @user %></span>
+            <span id="name"><%= @user.full_id %></span>
             <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'button-alt') %>
         </div>
         <div id="content">
