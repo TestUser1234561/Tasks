@@ -26,7 +26,7 @@
                 <%= f.label :tag %>
                 <%= text_field_tag 'task[tag_name]', nil, {list: 'tag-list'} %>
                 <datalist id="tag-list">
-                    <% @project.tags do |tag| %>
+                    <% @project.tags.each do |tag| %>
                         <option value="<%= tag.name %>"></option>
                     <% end %>
                 </datalist>

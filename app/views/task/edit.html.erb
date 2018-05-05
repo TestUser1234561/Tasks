@@ -1,3 +1,42 @@
 <%=	render partial: 'breadcrumbs' %>
-<h1>Task#edit</h1>
-<p>Find me in app/views/task/edit.html.erb</p>
+
+<div class="grid-center fill-x">
+    <div class="grid-center form-container">
+        <h2>Edit Task</h2>
+        <%= form_for @task, url: project_task_path(@project, @task), :html => {:class => 'form'} do |f| %>
+
+            <%= render partial: 'layouts/error' %>
+
+            <%= hidden_field_tag('task[project]', @project.id) %>
+
+            <div class="field">
+                <%= f.label :title %>
+                <%= f.text_field :title, autofocus: true %>
+            </div>
+
+            <div class="field">
+                <%= f.label :description %>
+                <%= f.text_area :description %>
+            </div>
+
+            <div class="field">
+                <%= f.label :Users %>
+                <%= f.select :users, @project.users.collect { |u| [ "#{u.first_name} #{u.last_name}", u.id ] }, { :multiple => true } %>
+            </div>
+
+            <div class="field">
+                <%= f.label :tag %>
+                <%= text_field_tag 'task[tag_name]', @task.tag.name, {list: 'tag-list'}%>
+                <datalist id="tag-list">
+                    <% @project.tags.each do |tag| %>
+                        <option value="<%= tag.name %>"></option>
+                    <% end %>
+                </datalist>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "Update" %>
+            </div>
+        <% end %>
+    </div>
+</div>
