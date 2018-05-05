@@ -17,7 +17,7 @@
 
 <% if @project.tasks.length != 0  %>
 
-    <div style="display: flex; grid-auto-flow: column; width: auto;">
+    <div style="display: flex; grid-auto-flow: column;">
         <% @project.tags.each do |tag| %>
             <div class="tag-container">
                 <span class="title"><%= tag.name %></span>
