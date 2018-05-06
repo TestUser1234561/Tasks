@@ -1,46 +1,37 @@
 <%=	render partial: 'breadcrumbs' %>
 
+<% content_for :js do %>
+    <%= javascript_include_tag 'project', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <% content_for :button do %>
-    <div class="button" data-link="<%= new_project_task_path(@project) %>">
+    <div class="button" data-target="new-task">
         <i class="fas fa-plus"></i>
     </div>
-    <div class="button" data-link="<%= add_user_path(@project) %>">
+    <div class="button" data-target="add-user">
         <i class="fas fa-user-plus"></i>
     </div>
-    <div class="button" data-link="<%= edit_project_path(@project) %>">
+    <div class="button" data-target="edit-project">
         <i class="fas fa-pencil-alt"></i>
     </div>
-    <div class="button" data-link="<%= delete_project_path(@project) %>">
+    <div class="button" data-target="delete-project">
         <i class="fas fa-trash"></i>
     </div>
 <% end %>
 
-<% if @project.tasks.length != 0  %>
+<div id="tasks" class="hidden" style="display: flex; grid-auto-flow: column;">
+</div>
 
-    <div style="display: flex; grid-auto-flow: column;">
-        <% @project.tags.each do |tag| %>
-            <div class="tag-container">
-                <span class="title"><%= tag.name %></span>
-                <div class="task-container">
-                    <% @project.tasks.each do |task| %>
-                        <% if task.tag.id === tag.id %>
-                            <a class="task" href="<%= project_task_path(@project, task) %>">
-                                <%= task.title %>
-                            </a>
-                        <% end %>
-                    <% end %>
-                </div>
-            </div>
-        <% end %>
+<div id="welcome" class="grid-center fill hidden">
+    <div style="text-align: center; color: gray">
+        <span>Looks like there's nothing here yet.</span><br>
+        <span>Try adding a task above!</span>
     </div>
+</div>
 
-<% else %>
+<div id="dimmer" class="invisible"></div>
 
-    <div class="grid-center fill">
-        <div style="text-align: center; color: gray">
-            <span>Looks like there's nothing here yet.</span><br>
-            <span>Try adding a task above!</span>
-        </div>
-    </div>
-
-<% end %>
+<%= render partial: 'new_task' %>
+<%= render partial: 'edit_project' %>
+<%= render partial: 'delete_project' %>
+<%= render partial: 'add_user' %>
