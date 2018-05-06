@@ -352,19 +352,3 @@ $page-margin: 10px;
 .destroy-buttons > a:first-child:hover {
   background-color: #972624;
 }
-
-.destroy-buttons > a:last-child {
-  font-size: 0.75em;
-  background-color: lightgray;
-  color: white;
-  width: 95%;
-  padding: 10px 0;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color .1s ease-in;
-}
-
-.destroy-buttons > a:last-child:hover {
-  background-color: #b7b7b7;
-}
