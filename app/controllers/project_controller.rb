@@ -56,10 +56,6 @@ class ProjectController < ApplicationController
         redirect_to(dashboard_path)
     end
 
-    def confirm_destroy
-        render :delete
-    end
-
     private
     def validate(error)
         if @project.valid?
