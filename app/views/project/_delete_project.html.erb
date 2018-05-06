@@ -1,0 +1,10 @@
+<div id="delete-project" class="popup invisible">
+    <div class="popup-menu">
+        <div class="form">
+            <h2>Are you sure you want to destroy this project?</h2>
+            <div class="destroy-buttons">
+                <%= link_to 'Destroy', project_path(@project), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+            </div>
+        </div>
+    </div>
+</div>

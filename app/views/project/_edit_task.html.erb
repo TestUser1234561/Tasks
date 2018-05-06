@@ -1,0 +1,37 @@
+<div id="new-task" class="popup invisible">
+    <div class="popup-menu">
+        <h2>Edit Task</h2>
+        <form class="form" id="new_task" action="javascript:newTask()" accept-charset="UTF-8">
+
+            <input type="hidden" name="task[project]" id="task_project" value="<%= @project.id %>" />
+
+            <div class="field">
+                <label for="task_title">Title</label>
+                <input autofocus="autofocus" type="text" name="task[title]" id="task_title" />
+            </div>
+
+            <div class="field">
+                <label for="task_description">Description</label>
+                <textarea name="task[description]" id="task_description"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="task_users">User</label>
+                <select name="task[users]" id="task_users">
+                    <% @project.users.each do |u| %>
+                        <option value="<%= u.id %>"><%= u.full_name %></option>
+                    <% end %>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="task_tag_name">Tag</label>
+                <input type="text" name="task[tag_name]" id="task_tag_name" list="tag-list"/>
+            </div>
+
+            <div class="actions">
+                <input type="submit" name="commit" value="Create" />
+            </div>
+        </form>
+    </div>
+</div>
