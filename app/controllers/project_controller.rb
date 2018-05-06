@@ -6,10 +6,7 @@ class ProjectController < ApplicationController
     def show
         @tasks = @project.tasks
         @tags = @project.tags
-    end
-
-    def edit
-        @errors = @project.errors
+        @task = Task.new
     end
 
     def new
@@ -26,11 +23,13 @@ class ProjectController < ApplicationController
 
     def update
         @project.update(project_params)
-        validate :edit
-    end
-
-    def add_user
-        @errors = []
+        if @project.valid?
+            @project.save
+            render json: {success: true}
+        else
+            @errors = @project.errors.full_messages
+            render json: {success: false, error: @errors}
+        end
     end
 
     def add
@@ -38,10 +37,10 @@ class ProjectController < ApplicationController
         unless user.nil?
             @project.users << user
             @project.save
-            redirect_to( project_path(@project) )
+            render json: {success: true}
         else
             @errors = ["User not found!"]
-            render :add_user
+            render json: {success: false, error: @errors}
         end
     end
 

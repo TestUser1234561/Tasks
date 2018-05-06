@@ -4,6 +4,11 @@ class TaskController < ApplicationController
     before_action :validate_owner
     layout 'main'
 
+    def index
+        tasks = @project.tasks
+        render jsonapi: tasks
+    end
+
     def show
         @tags = @project.tags
     end
@@ -19,7 +24,6 @@ class TaskController < ApplicationController
 
     def create
         @task = Task.assign_and_create(task_params)
-
         validate(:new)
     end
 
@@ -31,21 +35,16 @@ class TaskController < ApplicationController
     def destroy
         # noinspection RubyArgCount
         @task.destroy
-        redirect_to(project_path(@project))
-    end
-
-    def confirm_destroy
-        render :delete
     end
 
     private
     def validate(error)
         if @task.valid?
             @task.save
-            redirect_to(project_task_path(@project, @task))
+            render json: {success: true}
         else
             @errors = @task.errors.full_messages
-            render error
+            render json: {success: false, error: @errors}
         end
     end
 
