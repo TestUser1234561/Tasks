@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'home#index'
 
     #Projects
+    get 'project/:project_id/users', to: 'project#users'
     post 'project/:project_id/add', to: 'project#add'
     resources :project, except: [:index, :edit], controller: :project do
 

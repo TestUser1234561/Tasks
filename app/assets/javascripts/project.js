@@ -1,4 +1,5 @@
 //= require application
+//= require select2
 //= require ./classes/dashboard_generator
 //= require ./classes/task
 
@@ -6,7 +7,31 @@ let dashboardGenerator = new DashboardGenerator(displayTask);
 let task;
 const projectID = parseInt(window.location.pathname.split('/').pop());
 
-$(document).on('turbolinks:load', getTasks);
+$(document).on('turbolinks:load', () => {
+    //Start select2
+    $('.select').select2().on('change', () => {
+        $('#user_field').height($('.selection').height()) //Bad css fix
+    });
+    getUsers();
+    getTasks();
+});
+
+//Get project users
+function getUsers() {
+    $.ajax({
+        type: 'GET',
+        url: `/project/${projectID}/users`,
+        dataType: 'json'
+    }).done((res) => {
+        //Add users to select
+        let select = $('.select');
+        res.forEach((user) => {
+            if(select.find(`option[value="${user.id}"]`).length === 0){
+                select.append(new Option(user.name, user.id)).trigger('change')
+            }
+        });
+    });
+}
 
 function getTasks() {
     $.ajax({
@@ -68,7 +93,7 @@ function resetNewTask() {
     $('#new-task > div > h2').text('New Task');
     $('#task_title').val('');
     $('#task_description').val('');
-    $('#task_users').val('');
+    $('.select').val('').trigger('change');
     $('#task_tag_name').val('');
     $('#task_create').val('Create');
     $('#new_task').attr("action", `javascript:newTask()`);
@@ -79,7 +104,7 @@ function editTask() {
     $('#new-task > div > h2').text('Edit Task');
     $('#task_title').val(task.title);
     $('#task_description').val(task.description);
-    $('#task_users').val(task.users);
+    $('.select').val(task.users.map((u) => u.id)).trigger('change');
     $('#task_tag_name').val(task.tag);
     $('#task_create').val('Update');
     $('#new_task').attr("action", `javascript:task.update()`);
@@ -100,6 +125,7 @@ function addUser() {
         //Check if API call was successful
         if(data.success) {
             $('#dimmer').click();
+            getUsers();
         } else {
             //TODO: error
         }

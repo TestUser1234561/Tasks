@@ -15,18 +15,15 @@
                 <textarea name="task[description]" id="task_description"></textarea>
             </div>
 
-            <div class="field">
-                <label for="task_users">User</label>
-                <select name="task[users]" id="task_users">
-                    <% @project.users.each do |u| %>
-                        <option value="<%= u.id %>"><%= u.full_name %></option>
-                    <% end %>
+            <div class="field" id="user_field">
+                <label for="task_users">Users</label>
+                <select class="select" name="task[users][]" multiple="multiple" id="task_users">
                 </select>
             </div>
 
             <div class="field">
                 <label for="task_tag_name">Tag</label>
-                <input type="text" name="task[tag_name]" id="task_tag_name" list="tags"/>
+                <input type="text" name="task[tag_name]" id="task_tag_name" list="tag-list"/>
             </div>
 
             <div class="actions">

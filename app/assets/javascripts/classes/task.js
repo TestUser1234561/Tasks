@@ -38,7 +38,7 @@ class Task {
     getUserNames() {
         return this.users.map((user) => {
             if(user.first_name !== null && user.last_name !== null) {
-                return `${user.first_name} ${user.last_name} <${user.email}>`
+                return `${user.first_name} ${user.last_name} (${user.email})`
             } else {
                 return user.email
             }
@@ -54,8 +54,10 @@ class Task {
         }).done((data) => {
             //Check if API call was successful
             if(data.success) {
+                task = undefined;
                 getTasks();
-                $(`a [data-id="${this.id}"]`).click();
+                $('.popup').addClass('invisible');
+                $(`a[data-id="${this.id}"]`).click();
             } else {
                 //TODO: error
             }

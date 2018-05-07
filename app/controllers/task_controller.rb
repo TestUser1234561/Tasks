@@ -14,6 +14,7 @@ class TaskController < ApplicationController
     end
 
     def create
+        pp params
         @task = Task.assign_and_create(task_params)
         validate(:new)
     end
@@ -40,6 +41,6 @@ class TaskController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:title, :description, :users, :tag_name, :project)
+        params.require(:task).permit(:title, :description, :tag_name, :project, :users => [])
     end
 end

@@ -44,6 +44,13 @@ class ProjectController < ApplicationController
         end
     end
 
+    def users
+        users = @project.users.map do |user|
+            { id: user.id, name: user.full_id }
+        end
+        render json: users
+    end
+
     # noinspection RubyArgCount
     def destroy
         @project.users.destroy(@user)
