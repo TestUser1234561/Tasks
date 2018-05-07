@@ -1,3 +1,0 @@
-<% content_for :breadcrumbs do %>
-<span>:</span><a href="<%= project_path(@project) %>"><%= truncate(@project.name, length: 25) %></a><span>:</span><a href="<%= project_task_path(@project, @task) %>"><%= truncate(@task.title, length: 30) %></a>
-<% end %>
