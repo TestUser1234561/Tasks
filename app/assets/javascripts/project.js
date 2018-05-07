@@ -3,34 +3,10 @@
 //= require ./classes/task
 
 let dashboardGenerator = new DashboardGenerator(displayTask);
-
-$(document).on('turbolinks:load', function() {
-
-    getTasks();
-
-});
-
+let task;
 const projectID = parseInt(window.location.pathname.split('/').pop());
 
-function displayTask(id) {
-    $.ajax({
-        type: 'GET',
-        url: `/project/${projectID}/task/${id}`,
-        dataType: 'json'
-    }).done((res) => {
-        //Generate new task object
-        let task = new Task(res);
-
-        //Show task if valid
-        if(task.valid) {
-            let view = $('#view-task .popup-menu');
-            $('#dimmer').removeClass('invisible');
-            view.html(task.getHTML()).promise().done(() => {
-                $('#view-task').removeClass('invisible');
-            })
-        }
-    })
-}
+$(document).on('turbolinks:load', getTasks);
 
 function getTasks() {
     $.ajax({
@@ -41,6 +17,33 @@ function getTasks() {
         //Generate and display dashboard
         dashboardGenerator.parse(res);
     })
+}
+
+function displayTask(id) {
+    //Dont fetch task if its already in memory
+    if(task !== undefined && id === task.id) {
+        $('#dimmer').removeClass('invisible');
+        $('#view-task').removeClass('invisible');
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: `/project/${projectID}/task/${id}`,
+            dataType: 'json'
+        }).done((res) => {
+            //Generate new task object
+            task = new Task(res);
+
+            //Show task if valid
+            if(task.valid) {
+                let view = $('#view-task .popup-menu');
+                $('#dimmer').removeClass('invisible');
+                view.html(task.getHTML()).promise().done(() => {
+                    $('#view-task').removeClass('invisible');
+                    bindButtons();
+                })
+            }
+        })
+    }
 }
 
 //Add new task
@@ -58,6 +61,33 @@ function newTask() {
             //TODO: error
         }
     });
+}
+
+//Resets form data if it has been changed for edits
+function resetNewTask() {
+    $('#new-task > div > h2').text('New Task');
+    $('#task_title').val('');
+    $('#task_description').val('');
+    $('#task_users').val('');
+    $('#task_tag_name').val('');
+    $('#task_create').val('Create');
+    $('#new_task').attr("action", `javascript:newTask()`);
+}
+
+//Setup edit task form
+function editTask() {
+    $('#new-task > div > h2').text('Edit Task');
+    $('#task_title').val(task.title);
+    $('#task_description').val(task.description);
+    $('#task_users').val(task.users);
+    $('#task_tag_name').val(task.tag);
+    $('#task_create').val('Update');
+    $('#new_task').attr("action", `javascript:task.update()`);
+}
+
+//Delete task
+function deleteTask() {
+    task.delete();
 }
 
 //Add new user
