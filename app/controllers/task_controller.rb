@@ -10,16 +10,8 @@ class TaskController < ApplicationController
     end
 
     def show
-        @tags = @project.tags
-    end
-
-    def edit
-        @errors = []
-    end
-
-    def new
-        @task = Task.new
-        @errors = @task.errors
+        tasks = @project.tasks
+        render jsonapi: tasks
     end
 
     def create
