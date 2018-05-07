@@ -170,6 +170,8 @@ $page-margin: 10px;
 }
 
 .popup-menu {
+  max-width: 75%;
+  word-break: break-word;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -182,6 +184,14 @@ $page-margin: 10px;
 
 .popup-menu > .form {
   pointer-events: initial;
+}
+
+.popup-menu > .form > span:first-child {
+  margin-bottom: 25px;
+}
+
+.popup-menu > .form > span {
+  justify-self: start;
 }
 
 //Error boxes
@@ -212,7 +222,6 @@ $page-margin: 10px;
 }
 
 .form {
-  width: 100%;
   background-color: #fff;
   border-radius: 5px;
   padding: 25px;
@@ -249,6 +258,20 @@ $page-margin: 10px;
   border: 0;
   background-color: #F6F7F7;
   border-radius: 5px;
+}
+
+.form > .field > span {
+  justify-self: end;
+  align-self: start;
+  height: 35px;
+  width: 300px;
+  border: 0;
+  background-color: #F6F7F7;
+  border-radius: 5px;
+}
+
+.form > .field > span > span > span {
+  background-color: #F6F7F7;
 }
 
 .form > .actions {
