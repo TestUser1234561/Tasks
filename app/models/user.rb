@@ -13,6 +13,7 @@ class User < ApplicationRecord
     end
 
     def full_id
+        return self.email if self.first_name.nil? && self.last_name.nil?
         "#{self.first_name} #{self.last_name} <#{self.email}>"
     end
 
