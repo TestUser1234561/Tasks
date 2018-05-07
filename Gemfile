@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'jsonapi-rails'
+gem "select2-rails"
 
 gem 'devise'
 gem 'omniauth-google-oauth2'
