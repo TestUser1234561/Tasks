@@ -12,6 +12,7 @@ class DashboardGenerator {
 
     parseData() {
         this.tasks = {};
+        this.tags = [];
 
         //For each task
         this.data.forEach((task) => {
@@ -21,6 +22,7 @@ class DashboardGenerator {
             //Create tag array
             if(this.tasks[tag] === undefined) {
                 this.tasks[tag] = [];
+                this.tags.push(task['attributes']['tag']);
             }
 
             //Check if element has been displayed
@@ -57,6 +59,13 @@ class DashboardGenerator {
                 this.cb($(event.target).data('id'));
             });
         });
+
+        //Build tag data-list
+        let tags = '';
+        this.tags.forEach((tag) => {
+            tags += `<option value="${tag.id}">${tag.name}</option>`
+        });
+        $('#tags').html(tags);
     }
 
     static renderWelcome() {
