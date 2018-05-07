@@ -36,14 +36,15 @@ function bindButtons() {
                     window[$(e.target).data('function')]()
                 }
             })
-        } else {
-            //Check if button should be bound to a function
-            if($(b).data('function') !== undefined) {
-                $(b).click((e) => {
-                    //Run requested function if present
-                    window[$(e.target).data('function')]()
-                })
-            }
+        } else if($(b).data('function') !== undefined) {
+            $(b).click((e) => {
+                //Run requested function if present
+                window[$(e.target).data('function')]()
+            })
+        } else if($(b).data('link') !== undefined) {
+            $(b).click(() => {
+                Turbolinks.visit(window.location.origin + $(b).data('link'))
+            })
         }
     });
 }
