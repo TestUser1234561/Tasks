@@ -306,6 +306,10 @@ $page-margin: 10px;
   cursor: pointer;
 }
 
+.button > i {
+  pointer-events: none;
+}
+
 //Link style button
 .button-alt {
   display: inline-block;
