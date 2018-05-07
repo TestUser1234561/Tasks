@@ -1,9 +1,9 @@
 class Task {
     constructor(data) {
         this.valid = false;
-        if(data.data.length > 0 && Number.isInteger(parseInt(data.data[0]['id']))) {
-            this.id = data.data[0]['id'];
-            data = data.data[0]['attributes'];
+        if(Number.isInteger(parseInt(data.data['id']))) {
+            this.id = parseInt(data.data['id']);
+            data = data.data['attributes'];
             this.valid = true;
             this.projectId = parseInt(window.location.pathname.split('/').pop());
             this.users = data['users'];

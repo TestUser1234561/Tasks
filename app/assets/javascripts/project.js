@@ -18,7 +18,10 @@ function displayTask(id) {
         url: `/project/${projectID}/task/${id}`,
         dataType: 'json'
     }).done((res) => {
+        //Generate new task object
         let task = new Task(res);
+
+        //Show task if valid
         if(task.valid) {
             let view = $('#view-task .popup-menu');
             $('#dimmer').removeClass('invisible');
@@ -35,6 +38,7 @@ function getTasks() {
         url: `/project/${projectID}/task`,
         dataType: 'json'
     }).done((res) => {
+        //Generate and display dashboard
         dashboardGenerator.parse(res);
     })
 }
@@ -46,6 +50,7 @@ function newTask() {
         url: `/project/${projectID}/task`,
         data: data
     }).done((data) => {
+        //Check if API call was successful
         if(data.success) {
             getTasks();
             $('#dimmer').click();
@@ -62,6 +67,7 @@ function addUser() {
         url: `/project/${projectID}/add`,
         data: data
     }).done((data) => {
+        //Check if API call was successful
         if(data.success) {
             $('#dimmer').click();
         } else {
@@ -78,6 +84,7 @@ function editProject() {
         url: `/project/${projectID}`,
         data: data
     }).done((data) => {
+        //Check if API call was successful
         if(data.success) {
             $('#dimmer').click();
             $('#title a:last-child').text($('#edit-project form').serializeArray()[1].value);

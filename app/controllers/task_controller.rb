@@ -10,8 +10,7 @@ class TaskController < ApplicationController
     end
 
     def show
-        tasks = @project.tasks
-        render jsonapi: tasks
+        render jsonapi: @task
     end
 
     def create
