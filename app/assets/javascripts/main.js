@@ -1,8 +1,4 @@
 $(document).on('turbolinks:load', function() {
-    //Display user panel
-    $('#user-panel').click(function() {
-        $('#user-data').toggleClass('hidden')
-    });
 
     //Bind dimmer
     $('#dimmer').click(() => {
@@ -11,7 +7,7 @@ $(document).on('turbolinks:load', function() {
     });
 
     //Bind button links
-    bindButtons()
+    bindButtons();
 
     //Hack min width to nav bar -- lazy
     document.body.style.minWidth = `${$('#title').width() + $('#button-dashboard').width() + 40}px`
@@ -19,12 +15,35 @@ $(document).on('turbolinks:load', function() {
 
 function bindButtons() {
     $('.button').each((i , b) => {
+        //Remove any lingering event listeners
+        $(b).off();
+
+        //Display user panel
+        $('#user-panel').click(function() {
+            $('#user-data').toggleClass('hidden')
+        });
+
+        //If button has a data-target bind click event
         if($(b).data('target') !== undefined) {
-            $(b).click(() => {
+            $(b).click((e) => {
+                //Show target
                 $('.popup').addClass('invisible');
                 $(`#${$(b).data('target')}`).removeClass('invisible');
                 $('#dimmer').removeClass('invisible');
+
+                //Run requested function if present
+                if($(e.target).data('function') !== undefined) {
+                    window[$(e.target).data('function')]()
+                }
             })
+        } else {
+            //Check if button should be bound to a function
+            if($(b).data('function') !== undefined) {
+                $(b).click((e) => {
+                    //Run requested function if present
+                    window[$(e.target).data('function')]()
+                })
+            }
         }
     });
 }
