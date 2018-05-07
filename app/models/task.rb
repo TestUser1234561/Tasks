@@ -10,14 +10,14 @@ class Task < ApplicationRecord
         self.update(title: params[:title], description: params[:description])
         self.tag = Tag.find_or_create_by(name: params[:tag_name]) unless params[:tag_name] === tag.name
         self.users.clear
-        self.users << User.find(params[:users])
+        params[:users].each { |user| self.users << User.find(user) }
         self
     end
 
     def self.assign_and_create(params)
         task = Task.create(title: params[:title], description: params[:description])
         task.tag = Tag.find_or_create_by(name: params[:tag_name])
-        task.users << User.find(params[:users])
+        params[:users].each { |user| task.users << User.find(user) }
         task.project = Project.find(params[:project])
         task
     end
