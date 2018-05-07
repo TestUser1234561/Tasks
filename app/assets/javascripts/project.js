@@ -23,7 +23,7 @@ function getUsers() {
         url: `/project/${projectID}/users`,
         dataType: 'json'
     }).done((res) => {
-        //Add users to select
+        //Add users to select box
         let select = $('.select');
         res.forEach((user) => {
             if(select.find(`option[value="${user.id}"]`).length === 0){
@@ -33,6 +33,7 @@ function getUsers() {
     });
 }
 
+//Fetch all project tasks
 function getTasks() {
     $.ajax({
         type: 'GET',
@@ -44,6 +45,7 @@ function getTasks() {
     })
 }
 
+//Fetch and display task
 function displayTask(id) {
     //Dont fetch task if its already in memory
     if(task !== undefined && id === task.id) {
@@ -71,7 +73,7 @@ function displayTask(id) {
     }
 }
 
-//Add new task
+//Create a new task
 function newTask() {
     let data = $('#new-task form').serialize();
     $.post({
@@ -99,7 +101,7 @@ function resetNewTask() {
     $('#new_task').attr("action", `javascript:newTask()`);
 }
 
-//Setup edit task form
+//Set form data to selected task data
 function editTask() {
     $('#new-task > div > h2').text('Edit Task');
     $('#task_title').val(task.title);
@@ -110,12 +112,12 @@ function editTask() {
     $('#new_task').attr("action", `javascript:task.update()`);
 }
 
-//Delete task
+//Call current task delete method
 function deleteTask() {
     task.delete();
 }
 
-//Add new user
+//Add new user to project
 function addUser() {
     let data = $('#add-user form').serialize();
     $.post({

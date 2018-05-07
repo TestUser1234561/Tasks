@@ -42,6 +42,7 @@ function bindButtons() {
             })
         } else if($(b).data('link') !== undefined) {
             $(b).click(() => {
+                //Visit link if present
                 Turbolinks.visit(window.location.origin + $(b).data('link'))
             })
         }
