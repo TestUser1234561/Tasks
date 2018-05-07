@@ -6,7 +6,7 @@ class DashboardGenerator {
 
     parse(data) {
         this.data = data.data;
-        if(data.length < 1) { DashboardGenerator.renderWelcome(); }
+        if(this.data.length < 1) { DashboardGenerator.renderWelcome(); }
         else { this.parseData() }
     }
 

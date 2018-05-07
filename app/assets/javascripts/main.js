@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function() {
-
     //Bind dimmer
     $('#dimmer').click(() => {
         $('#dimmer').addClass('invisible');
