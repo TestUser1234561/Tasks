@@ -11,6 +11,13 @@ $(document).on('turbolinks:load', function() {
     });
 
     //Bind button links
+    bindButtons()
+
+    //Hack min width to nav bar -- lazy
+    document.body.style.minWidth = `${$('#title').width() + $('#button-dashboard').width() + 40}px`
+});
+
+function bindButtons() {
     $('.button').each((i , b) => {
         if($(b).data('target') !== undefined) {
             $(b).click(() => {
@@ -20,7 +27,4 @@ $(document).on('turbolinks:load', function() {
             })
         }
     });
-
-    //Hack min width to nav bar -- lazy
-    document.body.style.minWidth = `${$('#title').width() + $('#button-dashboard').width() + 40}px`
-});
+}

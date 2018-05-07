@@ -45,3 +45,22 @@
 .task:hover {
   background-color: #b7b7b7;
 }
+
+#view-task-buttons {
+  pointer-events: initial;
+  margin-top: 10px;
+  justify-self: left;
+}
+
+
+#view-task-buttons div {
+  background-color: #dbdbdb;
+}
+
+#view-task-buttons div:first-child:hover {
+  background-color: #3f67a6;
+}
+
+#view-task-buttons div:last-child:hover {
+  background-color: #a62c22;
+}

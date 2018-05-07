@@ -1,7 +1,8 @@
 //= require application
 //= require ./classes/dashboard_generator
+//= require ./classes/task
 
-let dashboardGenerator = new DashboardGenerator();
+let dashboardGenerator = new DashboardGenerator(displayTask);
 
 $(document).on('turbolinks:load', function() {
 
@@ -11,13 +12,30 @@ $(document).on('turbolinks:load', function() {
 
 const projectID = parseInt(window.location.pathname.split('/').pop());
 
+function displayTask(id) {
+    $.ajax({
+        type: 'GET',
+        url: `/project/${projectID}/task/${id}`,
+        dataType: 'json'
+    }).done((res) => {
+        let task = new Task(res);
+        if(task.valid) {
+            let view = $('#view-task .popup-menu');
+            $('#dimmer').removeClass('invisible');
+            view.html(task.getHTML()).promise().done(() => {
+                $('#view-task').removeClass('invisible');
+            })
+        }
+    })
+}
+
 function getTasks() {
     $.ajax({
         type: 'GET',
         url: `/project/${projectID}/task`,
         dataType: 'json'
-    }).done((data) => {
-        dashboardGenerator.parse(data);
+    }).done((res) => {
+        dashboardGenerator.parse(res);
     })
 }
 

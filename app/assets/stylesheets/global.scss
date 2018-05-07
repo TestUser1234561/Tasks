@@ -127,6 +127,10 @@ $page-margin: 10px;
   pointer-events: none !important;
 }
 
+.invisible #view-task-buttons {
+  pointer-events: none !important;
+}
+
 //Grids
 .grid-center {
   width: auto;

@@ -44,8 +44,8 @@ class ProjectController < ApplicationController
         end
     end
 
+    # noinspection RubyArgCount
     def destroy
-        # noinspection RubyArgCount
         @project.users.destroy(@user)
         if @project.users.empty?
             @project.tasks.each do |task|
