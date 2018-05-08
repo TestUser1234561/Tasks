@@ -1,0 +1,24 @@
+<div id="edit-project" class="popup invisible">
+    <div class="popup-menu">
+        <h2>Edit Project</h2>
+        <form class="form" id="edit_project" action="javascript:editProject()" accept-charset="UTF-8">
+
+            <div class="error_display invisible-all">
+                <h2><span class="error_number"></span> <span class="error_word"></span> are preventing the project from being edited!</h2>
+                <ul class="errors">
+                </ul>
+            </div>
+
+            <input type="hidden" name="task[project]" id="task_project" value="<%= @project.id %>" />
+
+            <div class="field">
+                <label for="project_name">Name</label>
+                <input autofocus="autofocus" type="text" value="Test" name="project[name]" id="project_name" />
+            </div>
+
+            <div class="actions">
+                <input type="submit" name="commit" value="Create" />
+            </div>
+        </form>
+    </div>
+</div>

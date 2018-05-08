@@ -1,8 +1,13 @@
+<% content_for :js do %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <% content_for :button do %>
     <div class="button" data-link="<%= new_project_path %>">
         <i class="fas fa-plus"></i>
     </div>
 <% end %>
+
 <% if @projects.length != 0  %>
 
     <div class="grid-center fill-x">
@@ -20,7 +25,7 @@
                 <div id="recent-tasks" class="task-container">
                     <% task = @user.latest_tasks(10) %>
                     <% task.each do |t| %>
-                        <a href="<%= project_task_path(t.project, t) %>" class="task"><%= "#{t.project.name} - #{t.title}" %></a>
+                        <a href="<%= project_path(t.project) %>" class="task"><%= "#{t.project.name} - #{t.title}" %></a>
                     <% end %>
                     <% unless task.length > 0 %>
                         <span style="text-align: center; color: gray">Looks like no tasks have been assigned to you yet!</span>

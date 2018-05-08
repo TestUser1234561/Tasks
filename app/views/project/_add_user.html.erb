@@ -1,0 +1,23 @@
+<div id="add-user" class="popup invisible">
+    <div class="popup-menu">
+        <h2>Add User</h2>
+        <form id="add_user" class="form" action="javascript:addUser()" accept-charset="UTF-8" method="post">
+
+            <div class="error_display invisible-all">
+                <h2><span class="error_number"></span> <span class="error_word"></span> are preventing the user from
+                    being added!</h2>
+                <ul class="errors">
+                </ul>
+            </div>
+
+            <div class="field">
+                <label for="add_email">Email</label>
+                <input autofocus="autofocus" type="email" name="add[email]" id="add_email" />
+            </div>
+
+            <div class="actions">
+                <input type="submit" name="commit" value="Invite" data-disable-with="Invite" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -4,52 +4,43 @@ class TaskController < ApplicationController
     before_action :validate_owner
     layout 'main'
 
+    def index
+        tasks = @project.tasks
+        render jsonapi: tasks
+    end
+
     def show
-        @tags = @project.tags
-    end
-
-    def edit
-        @errors = []
-    end
-
-    def new
-        @task = Task.new
-        @errors = @task.errors
+        render jsonapi: @task
     end
 
     def create
+        pp params
         @task = Task.assign_and_create(task_params)
-
-        validate(:new)
+        validate
     end
 
     def update
         @task.update_task(task_params)
-        validate(:update)
+        validate
     end
 
     def destroy
         # noinspection RubyArgCount
         @task.destroy
-        redirect_to(project_path(@project))
-    end
-
-    def confirm_destroy
-        render :delete
     end
 
     private
-    def validate(error)
+    def validate
         if @task.valid?
             @task.save
-            redirect_to(project_task_path(@project, @task))
+            render json: {success: true}
         else
             @errors = @task.errors.full_messages
-            render error
+            render json: {success: false, error: @errors}
         end
     end
 
     def task_params
-        params.require(:task).permit(:title, :description, :users, :tag_name, :project)
+        params.require(:task).permit(:title, :description, :tag_name, :project, :users => [])
     end
 end
