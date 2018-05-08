@@ -1,4 +1,5 @@
 //= require application
+//= require cable
 //= require select2
 //= require ./classes/dashboard_generator
 //= require ./classes/task
@@ -82,8 +83,8 @@ function newTask() {
     }).done((data) => {
         //Check if API call was successful
         if(data.success) {
-            getTasks();
             $('#dimmer').click();
+            App.projectChannel.send({update: 'tasks'});
         } else {
             appendErrors('new_task', data['error'])
         }
@@ -127,7 +128,7 @@ function addUser() {
         //Check if API call was successful
         if(data.success) {
             $('#dimmer').click();
-            getUsers();
+            App.projectChannel.send({update: 'users'})
         } else {
             appendErrors('add_user', data['error'])
         }

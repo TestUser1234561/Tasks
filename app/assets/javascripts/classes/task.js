@@ -55,7 +55,7 @@ class Task {
             //Check if API call was successful
             if(data.success) {
                 task = undefined;
-                getTasks();
+                App.projectChannel.send({update: 'tasks'});
                 $('.popup').addClass('invisible');
                 $(`a[data-id="${this.id}"]`).click();
             } else {
@@ -71,7 +71,7 @@ class Task {
                 url: `/project/${this.projectId}/task/${this.id}`
             }).done(() => {
                 $('#dimmer').click();
-                getTasks();
+                App.projectChannel.send({update: 'tasks'});
             });
         }
     }
