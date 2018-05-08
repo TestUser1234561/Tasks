@@ -85,7 +85,7 @@ function newTask() {
             getTasks();
             $('#dimmer').click();
         } else {
-            //TODO: error
+            appendErrors('new_task', data['error'])
         }
     });
 }
@@ -129,7 +129,7 @@ function addUser() {
             $('#dimmer').click();
             getUsers();
         } else {
-            //TODO: error
+            appendErrors('add_user', data['error'])
         }
     });
 }
@@ -147,7 +147,18 @@ function editProject() {
             $('#dimmer').click();
             $('#title a:last-child').text($('#edit-project form').serializeArray()[1].value);
         } else {
-            //TODO: error
+            appendErrors('edit_project', data['error'])
         }
     });
+}
+
+function appendErrors(target, errors) {
+    $(`#${target} .error_number`).text(errors.length);
+    $(`#${target} .error_word`).text(errors.length === 1 ? 'error' : 'errors');
+    let dom = '';
+    errors.forEach((error) => {
+       dom += `<li class="error">${error}</li>`
+    });
+    $(`#${target} .errors`).html(dom);
+    $(`#${target} .error_display`).removeClass('invisible-all')
 }

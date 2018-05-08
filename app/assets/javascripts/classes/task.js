@@ -19,8 +19,8 @@ class Task {
         return `
             <h2>${this.title}</h2>
             <form class="form">
-                <span>${this.description}</span><br>
-                <span>Users: ${this.getUserNames()}</span><br><br>
+                ${ this.description ? `<span>${this.description}</span><br>` : ``}
+                ${ this.users.length ? `<span>Users: ${this.getUserNames()}</span><br><br>` : `` }
                 <span>Created at: ${new Date(this.created_at).toDateString()}</span>
                 <span>Last updated: ${new Date(this.updated_at).toDateString()}</span>
             </form>
@@ -59,7 +59,7 @@ class Task {
                 $('.popup').addClass('invisible');
                 $(`a[data-id="${this.id}"]`).click();
             } else {
-                //TODO: error
+                appendErrors('new_task', data['error'])
             }
         });
     }
@@ -71,7 +71,7 @@ class Task {
                 url: `/project/${this.projectId}/task/${this.id}`
             }).done(() => {
                 $('#dimmer').click();
-                window['getTasks']();
+                getTasks();
             });
         }
     }

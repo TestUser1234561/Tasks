@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
     $('#dimmer').click(() => {
         $('#dimmer').addClass('invisible');
         $('.popup').addClass('invisible');
+        $('.popup .error_display').addClass('invisible-all');
     });
 
     //Bind button links

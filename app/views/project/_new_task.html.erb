@@ -3,6 +3,12 @@
         <h2>New Task</h2>
         <form class="form" id="new_task" action="javascript:newTask()" accept-charset="UTF-8">
 
+            <div class="error_display invisible-all">
+                <h2><span class="error_number"></span> <span class="error_word"></span> are preventing the task from being created!</h2>
+                <ul class="errors">
+                </ul>
+            </div>
+
             <input type="hidden" name="task[project]" id="task_project" value="<%= @project.id %>" />
 
             <div class="field">

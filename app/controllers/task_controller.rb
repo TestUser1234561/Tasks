@@ -16,12 +16,12 @@ class TaskController < ApplicationController
     def create
         pp params
         @task = Task.assign_and_create(task_params)
-        validate(:new)
+        validate
     end
 
     def update
         @task.update_task(task_params)
-        validate(:update)
+        validate
     end
 
     def destroy
@@ -30,7 +30,7 @@ class TaskController < ApplicationController
     end
 
     private
-    def validate(error)
+    def validate
         if @task.valid?
             @task.save
             render json: {success: true}
