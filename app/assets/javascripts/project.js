@@ -11,7 +11,7 @@ const projectID = parseInt(window.location.pathname.split('/').pop());
 $(document).on('turbolinks:load', () => {
     //Start select2
     $('.select').select2().on('change', () => {
-        $('#user_field').height($('.selection').height()) //Bad css fix
+        $('#user_field').height($('span .select2-selection').height()) //Bad css fix
     });
     getUsers();
     getTasks();
