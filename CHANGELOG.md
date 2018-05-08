@@ -6,10 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Live project updates
 - Gem jsonapi-rb
 ### Changed
 - Projects now update and render via ajax calls
-- Minor project visual enhancments
+- Projects visuals
+### Removed
+- All visual routes for tasks
 
 ## [1.0.0] - 2018-05-06
 ### Added
