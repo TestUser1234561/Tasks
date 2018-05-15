@@ -3,6 +3,8 @@ class User < ApplicationRecord
     has_and_belongs_to_many :projects
     has_and_belongs_to_many :tasks
 
+    scope :most_recent, -> (limit) { order("created_at desc").limit(limit) }
+
     # Include default devise modules. Others available are:
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2]

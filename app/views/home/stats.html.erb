@@ -1,0 +1,13 @@
+<h1>Latest Users</h1>
+<ul>
+    <% @users.each do |user| %>
+        <span><%= user.full_name %></span><br>
+    <% end %>
+</ul>
+
+<h1>Latest Tags</h1>
+<ul>
+    <% @tags.each do |tag| %>
+        <span><%= tag.name %></span><br>
+    <% end %>
+</ul>
