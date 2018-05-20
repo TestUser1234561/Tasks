@@ -2,7 +2,7 @@
 ## Tasks
 A simple platform for user's to create projects and assign catergorized tasks to other users in a kanban board style.
 
-## Instalation
+## Installation
 Tasks currently supports ruby version 2.4.3
 1. Fork or clone the tasks repository.
 2. Run `bundle install` inside the tasks directory
