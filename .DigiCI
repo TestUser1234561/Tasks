@@ -1,6 +1,6 @@
 {
   "do": [
-    "\\curl -sSL https://get.rvm.io | bash -s stable",
+    "curl -sSL https://get.rvm.io | bash -s stable",
     "source ~/.bash_profile",
     "rvm install ruby-2.4.4",
     "gem install bundler",
