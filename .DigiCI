@@ -2,6 +2,7 @@
   "do": [
     "\\curl -L https://get.rvm.io | bash",
     "rvm install 2.4.4",
+    "source /etc/profile.d/rvm.sh",
     "gem install bundler",
     "bundle install",
     "rspec"
