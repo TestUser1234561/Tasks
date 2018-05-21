@@ -1,6 +1,8 @@
 {
   "do": [
     "echo This is only a test",
-    "npm -v"
+    "npm -v",
+    "echo This is test 2!",
+    "npm install"
   ]
 }
