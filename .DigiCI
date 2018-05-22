@@ -1,8 +1,11 @@
 {
   "do": [
-    "curl -sSL https://get.rvm.io | bash -s stable",
-    "source ~/.bash_profile",
-    "rvm install ruby-2.4.4",
+    "curl -sSL https://rvm.io/mpapis.asc | sudo gpg2 --import -",
+    "curl -sSL https://get.rvm.io | sudo bash -s stable",
+    "source /etc/profile.d/rvm.sh",
+    "rvm requirements",
+    "rvm install 2.4.4",
+    "rvm use 2.4.1 --default",
     "gem install bundler",
     "bundle install",
     "rspec"
